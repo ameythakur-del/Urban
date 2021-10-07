@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "860915071969",
+    "firebase_url": "https://we-for-you-ca4bb-default-rtdb.firebaseio.com",
+    "project_id": "we-for-you-ca4bb",
+    "storage_bucket": "we-for-you-ca4bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860915071969:android:ea266d93b7719f8d4f30a0",
+        "android_client_info": {
+          "package_name": "com.NGO.weforyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD796_du2QEdvbLy2aVs1h94Fsb8a_Nn8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860915071969:android:1f2fa9d48092313a4f30a0",
+        "android_client_info": {
+          "package_name": "com.example.hospitalsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD796_du2QEdvbLy2aVs1h94Fsb8a_Nn8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860915071969:android:22a6e156abdb3b2d4f30a0",
+        "android_client_info": {
+          "package_name": "com.example.urban"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD796_du2QEdvbLy2aVs1h94Fsb8a_Nn8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860915071969:android:d4ea3dea7f1a233a4f30a0",
+        "android_client_info": {
+          "package_name": "com.example.weforyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD796_du2QEdvbLy2aVs1h94Fsb8a_Nn8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860915071969-fkjtfckthk149tftc7fgku1hk99g1skr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
