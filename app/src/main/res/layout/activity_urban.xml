@@ -77,7 +77,7 @@
                             android:layout_height="wrap_content"
                             android:text="All"/>
 
-                        <com.google.android.material.chip.Chip
+                        <!--<com.google.android.material.chip.Chip
                             android:id="@+id/Electrician"
                             app:chipBackgroundColor="#FFFFFF"
                             app:checkedIconTint="#20c997"
@@ -146,7 +146,7 @@
                             android:checkable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Massage"/>
+                            android:text="Massage"/>-->
 
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>

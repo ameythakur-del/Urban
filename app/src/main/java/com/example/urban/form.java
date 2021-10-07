@@ -1,6 +1,7 @@
 package com.example.urban;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -32,6 +33,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,7 +43,7 @@ import java.util.HashMap;
 
 public class form extends AppCompatActivity {
     TextInputEditText  ename,edob,ephoneNumber,ebloodGroup,equalification,eaadhar,eaddress,earea;
-    DatabaseReference formref;
+    DatabaseReference formref,spinnerref;
     Button submit;
 
     @Override
@@ -48,9 +52,7 @@ public class form extends AppCompatActivity {
         setContentView(R.layout.activity_form);
 
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-                .createFromResource(this, R.array.Specialization_array,
-                        android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> staticAdapter =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(staticAdapter);
 
@@ -65,6 +67,36 @@ public class form extends AppCompatActivity {
         submit = findViewById(R.id.submit);
 
         formref = FirebaseDatabase.getInstance().getReference("Form");
+        spinnerref=FirebaseDatabase.getInstance().getReference().child("Chips");
+
+        spinnerref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String newspin=snapshot.getValue().toString();
+                staticAdapter.add(newspin);
+                staticAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

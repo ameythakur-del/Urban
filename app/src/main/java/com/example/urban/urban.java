@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,7 @@ public class urban extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private EditText searchView;
-    DatabaseReference reference;
+    DatabaseReference reference,chipref;
     public List<urbanmodel> urbanmodels;
     ChipGroup chipGroup;
     String spec;
@@ -53,6 +55,7 @@ public class urban extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.view);
         reference = FirebaseDatabase.getInstance().getReference().child("Form");
+        chipref=FirebaseDatabase.getInstance().getReference().child("Chips");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setHasFixedSize(true);
@@ -76,6 +79,41 @@ public class urban extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setAdapter(urbanRecyclerAdapter);
                 urbanRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        chipref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String newchip=snapshot.getValue().toString();
+                Chip chip = new Chip(urban.this);
+                chip.setText(newchip);
+                chip.setChipBackgroundColorResource(R.color.chipback);
+                chip.setCheckable(true);
+                chip.setChipStrokeColorResource(R.color.stroke);
+                chip.setChipStrokeWidth(2.5F);
+                chip.setTextColor(getResources().getColor(R.color.black));
+                chipGroup.addView(chip);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
@@ -120,7 +158,7 @@ public class urban extends AppCompatActivity {
 
                     else {
                         Query query;
-                        if (spec.equals("Electrician") || spec.equals("Barber") || spec.equals("Painter") || spec.equals("Mechanic") || spec.equals("Home Cleaning") || spec.equals("Pest Control") || spec.equals("Massage")) {
+                        if (!spec.equals(null)) {
                             query = reference.orderByChild("Specialization").equalTo(spec);
                             query.addValueEventListener(new ValueEventListener() {
                                 @Override
