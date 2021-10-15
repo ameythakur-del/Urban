@@ -42,9 +42,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class form extends AppCompatActivity {
-    TextInputEditText  ename,edob,ephoneNumber,ebloodGroup,equalification,eaadhar,eaddress,earea;
+    TextInputEditText  ename,edob,ephoneNumber,ebloodGroup,equalification,eaadhar,eaddress;
     DatabaseReference formref,spinnerref;
     Button submit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,14 @@ public class form extends AppCompatActivity {
         staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(staticAdapter);
 
+        Spinner citySpinner=findViewById(R.id.cityspinner);
+        ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter
+                .createFromResource(this, R.array.taluka,
+                        android.R.layout.simple_spinner_item);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(cityAdapter);
+
+
         ename = findViewById(R.id.name);
         edob = findViewById(R.id.dob);
         ephoneNumber = findViewById(R.id.phoneNumber);
@@ -63,7 +72,6 @@ public class form extends AppCompatActivity {
         equalification = findViewById(R.id.qualification);
         eaadhar = findViewById(R.id.aadhar);
         eaddress = findViewById(R.id.address);
-        earea = findViewById(R.id.area);
         submit = findViewById(R.id.submit);
 
         formref = FirebaseDatabase.getInstance().getReference("Form");
@@ -104,10 +112,13 @@ public class form extends AppCompatActivity {
                 if(TextUtils.isEmpty(ename.getText().toString()) || TextUtils.isEmpty(edob.getText().toString()) || TextUtils.isEmpty(ephoneNumber.getText().toString()) ||
                         TextUtils.isEmpty(ebloodGroup.getText().toString()) ||
                         TextUtils.isEmpty(equalification .getText().toString()) || TextUtils.isEmpty(eaadhar.getText().toString()) ||
-                        TextUtils.isEmpty(eaddress .getText().toString()) || TextUtils.isEmpty(earea.getText().toString())
+                        TextUtils.isEmpty(eaddress .getText().toString())
                 )
                 {
                     Toast.makeText(form.this, "Fill all details",Toast.LENGTH_LONG).show();
+                }
+                if (citySpinner.getSelectedItem().toString().equals("Select Serving Area")){
+                    Toast.makeText(form.this, "Select Serving Area",Toast.LENGTH_LONG).show();
                 }
                 else {
                     String name = ename.getText().toString();
@@ -115,10 +126,10 @@ public class form extends AppCompatActivity {
                     String phoneNumber = ephoneNumber.getText().toString();
                     String bloodGroup = ebloodGroup.getText().toString();
                     String spec = staticSpinner.getSelectedItem().toString();
+                    String area = citySpinner.getSelectedItem().toString();
                     String qualification = equalification.getText().toString();
                     String aadhar = eaadhar.getText().toString();
                     String address = eaddress.getText().toString();
-                    String area = earea.getText().toString();
 
                     HashMap hashMap = new HashMap();
                     hashMap.put("Name", name);
@@ -130,11 +141,12 @@ public class form extends AppCompatActivity {
                     hashMap.put("aadharNumber", aadhar);
                     hashMap.put("address", address);
                     hashMap.put("area", area);
+                    hashMap.put("count","0");
                     formref.child(phoneNumber).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             Toast.makeText(form.this, "Data Uploaded Succesfully", Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(form.this,button.class);
+                            Intent intent=new Intent(form.this,urban.class);
                             startActivity(intent);
 
                         }

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">We Serve</string>
+    <string-array name="taluka">
+        <item>Select Serving Area</item>
+        <item>Devgad</item>
+        <item>Kankavli</item>
+        <item>Malvan</item>
+        <item>Vengurla</item>
+        <item>Sawantwadi</item>
+        <item>Waibhavwadi</item>
+        <item>Kudal</item>
+    </string-array>
 </resources>

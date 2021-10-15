@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/activity_button.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/activity_editform.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/activity_form.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/activity_urban.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/Urban/app/src/main/res/layout/item_urbanrecycler.xml" value="0.264" />
       </map>
     </option>
   </component>

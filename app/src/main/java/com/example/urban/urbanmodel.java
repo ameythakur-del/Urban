@@ -1,16 +1,17 @@
 package com.example.urban;
 
 public class urbanmodel {
-    private String Name, area,phoneNumber,Specialization;
+    private String Name, area,phoneNumber,Specialization,count;
 
     public urbanmodel() {
     }
 
-    public urbanmodel(String Name, String area, String phoneNumber, String Specialization) {
+    public urbanmodel(String Name, String area, String phoneNumber, String Specialization,String count) {
         this.Name = Name;
         this.area = area;
         this.phoneNumber = phoneNumber;
         this.Specialization = Specialization;
+        this.count=count;
 
     }
 
@@ -45,6 +46,13 @@ public class urbanmodel {
         this.Specialization = Specialization;
     }
 
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 
 
 }

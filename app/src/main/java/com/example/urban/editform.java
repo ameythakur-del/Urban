@@ -29,22 +29,28 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class editform extends AppCompatActivity {
-    TextInputEditText ename,edob,ebloodGroup,equalification,eaadhar,eaddress,earea;
+    TextInputEditText ename,edob,ebloodGroup,equalification,eaadhar,eaddress;
     TextView ephoneNumber;
     DatabaseReference formref,spinnerref;
     Button submit;
-    double dlatitude;
-    double dlongitude;
     String pn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editform);
+
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> staticAdapter =new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(staticAdapter);
+
+        Spinner citySpinner=findViewById(R.id.cityspinner);
+        ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter
+                .createFromResource(this, R.array.taluka,
+                        android.R.layout.simple_spinner_item);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(cityAdapter);
 
         pn=getIntent().getStringExtra("phonenumber");
 
@@ -55,7 +61,6 @@ public class editform extends AppCompatActivity {
         equalification = findViewById(R.id.qualification);
         eaadhar = findViewById(R.id.aadhar);
         eaddress = findViewById(R.id.address);
-        earea = findViewById(R.id.area);
         submit = findViewById(R.id.submit);
 
         formref = FirebaseDatabase.getInstance().getReference("Form");
@@ -106,7 +111,8 @@ public class editform extends AppCompatActivity {
                     String aadhar=snapshot.child("aadharNumber").getValue().toString();
                     eaadhar.setText(aadhar);
                     String area=snapshot.child("area").getValue().toString();
-                    earea.setText(area);
+                    int cityspinnerpos=cityAdapter.getPosition(area);
+                    citySpinner.setSelection(cityspinnerpos);
                     eaadhar.setText(aadhar);
                     String address=snapshot.child("address").getValue().toString();
                     eaddress.setText(address);
@@ -129,7 +135,7 @@ public class editform extends AppCompatActivity {
                 if(TextUtils.isEmpty(ename.getText().toString()) || TextUtils.isEmpty(edob.getText().toString()) || TextUtils.isEmpty(ephoneNumber.getText().toString()) ||
                         TextUtils.isEmpty(ebloodGroup.getText().toString()) ||
                         TextUtils.isEmpty(equalification .getText().toString()) || TextUtils.isEmpty(eaadhar.getText().toString()) ||
-                        TextUtils.isEmpty(eaddress .getText().toString()) || TextUtils.isEmpty(earea.getText().toString())
+                        TextUtils.isEmpty(eaddress .getText().toString())
                 )
                 {
                     Toast.makeText(editform.this, "Fill all details",Toast.LENGTH_LONG).show();
@@ -143,10 +149,8 @@ public class editform extends AppCompatActivity {
                     String qualification = equalification.getText().toString();
                     String aadhar = eaadhar.getText().toString();
                     String address = eaddress.getText().toString();
-                    String area = earea.getText().toString();
+                    String area = citySpinner.getSelectedItem().toString();
 
-                    String latitude = String.valueOf(dlatitude);
-                    String longitude = String.valueOf(dlongitude);
                     HashMap hashMap = new HashMap();
                     hashMap.put("Name", name);
                     hashMap.put("dob", dob);
@@ -157,8 +161,6 @@ public class editform extends AppCompatActivity {
                     hashMap.put("aadharNumber", aadhar);
                     hashMap.put("address", address);
                     hashMap.put("area", area);
-                    hashMap.put("latitude", latitude);
-                    hashMap.put("longitude", longitude);
                     formref.child(phoneNumber).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {

@@ -60,8 +60,8 @@ public class urbanRecyclerAdapter extends RecyclerView.Adapter<urbanRecyclerAdap
 
         viewHolder.name.setText(urbanmodel.getName());
         viewHolder.area.setText(urbanmodel.getArea());
-        viewHolder.phoneNunber.setText(urbanmodel.getPhoneNumber());
         viewHolder.specialization.setText(urbanmodel.getSpecialization());
+        viewHolder.count.setText(urbanmodel.getCount());
 
     }
 
@@ -107,9 +107,9 @@ public class urbanRecyclerAdapter extends RecyclerView.Adapter<urbanRecyclerAdap
     };
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView name, area,phoneNunber,specialization;
-        Button  edit,delete;
-        ImageView call;
+        private TextView name, area,specialization,count;
+        Button  edit,delete,call;
+
 
 
         public ViewHolder(@NonNull View itemView, Context ctx) {
@@ -120,8 +120,8 @@ public class urbanRecyclerAdapter extends RecyclerView.Adapter<urbanRecyclerAdap
             call = itemView.findViewById(R.id.call);
             edit=itemView.findViewById(R.id.edit);
             delete=itemView.findViewById(R.id.delete);
-            phoneNunber = itemView.findViewById(R.id.phoneNumber);
             specialization = itemView.findViewById(R.id.specialization);
+            count=itemView.findViewById(R.id.count);
             call.setOnClickListener(this);
             edit.setOnClickListener(this);
             delete.setOnClickListener(this);
